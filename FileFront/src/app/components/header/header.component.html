@@ -1,13 +1,22 @@
 <header>
   <div class="title-pane">
     <h1>{{ title }}</h1>
-    <button (click)="onRefresh()">Refresh file list</button>
+    <button (click)="onRefresh()">
+      Refresh file list<fa-icon
+        [icon]="faArrowsRotate"
+        class="button-icon"
+      ></fa-icon>
+    </button>
 
     <button
       (click)="onUploadFormToggle()"
       [ngClass]="{ 'btn-close': showUploadForm, 'btn-upload': !showUploadForm }"
     >
       {{ showUploadForm ? "Close" : "Upload file" }}
+      <fa-icon
+        [icon]="showUploadForm ? faXmark : faPlus"
+        class="button-icon"
+      ></fa-icon>
     </button>
   </div>
   <app-upload-form *ngIf="showUploadForm"></app-upload-form>

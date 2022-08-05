@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpRequestService } from 'src/app/services/http-request.service';
 import { UploadedFile } from 'src/interfaces/uploadedFile';
+import { faFileArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-upload-form',
@@ -11,6 +13,9 @@ export class UploadFormComponent implements OnInit {
   private uploadedFile: File | null = null;
   filename: string;
   private defaultFilename = 'No chosen file';
+
+  faFileArrowUp = faFileArrowUp;
+  faPaperPlane = faPaperPlane;
 
   constructor(private httpRequestService: HttpRequestService) {
     this.filename = this.defaultFilename;

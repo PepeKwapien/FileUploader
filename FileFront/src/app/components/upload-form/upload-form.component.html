@@ -6,14 +6,22 @@
       <input type="text" value="{{ filename }}" disabled="true" />
     </div>
     <div class="upload-form-buttons">
-      <label for="input-file" class="form-button">Select file</label>
+      <label for="input-file" class="form-button"
+        >Select file<fa-icon
+          [icon]="faFileArrowUp"
+          class="button-icon"
+        ></fa-icon
+      ></label>
       <input
         type="file"
         id="input-file"
         style="display: none"
         (change)="onChange($event.target)"
       />
-      <input type="submit" value="Send" class="form-button" />
+      <button type="submit" class="form-button">
+        Send
+        <fa-icon [icon]="faPaperPlane" class="button-icon"></fa-icon>
+      </button>
     </div>
   </form>
   <div class="break"></div>
