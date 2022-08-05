@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-form.component.css'],
 })
 export class UploadFormComponent implements OnInit {
+  private uploadedFile: File | null = null;
   filename: string;
   private defaultFilename = 'No chosen file';
 
@@ -15,8 +16,10 @@ export class UploadFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSelect() {
-    this.filename = 'test.txt';
+  onChange(eventTarget: EventTarget | null) {
+    const target: HTMLInputElement | null = eventTarget as HTMLInputElement;
+    this.uploadedFile = target?.files?.item(0) ?? null;
+    this.filename = this.uploadedFile?.name ?? this.defaultFilename;
   }
 
   onSend() {
