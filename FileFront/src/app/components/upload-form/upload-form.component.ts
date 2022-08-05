@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpRequestService } from 'src/app/services/http-request.service';
+import { UploadedFile } from 'src/interfaces/uploadedFile';
 
 @Component({
   selector: 'app-upload-form',
@@ -10,7 +12,7 @@ export class UploadFormComponent implements OnInit {
   filename: string;
   private defaultFilename = 'No chosen file';
 
-  constructor() {
+  constructor(private httpRequestService: HttpRequestService) {
     this.filename = this.defaultFilename;
   }
 
@@ -27,5 +29,11 @@ export class UploadFormComponent implements OnInit {
       alert('Choose a file');
       return;
     }
+
+    const newFile: UploadedFile = { filename: this.filename };
+
+    this.httpRequestService.createFile(newFile).subscribe();
+
+    this.filename = this.defaultFilename;
   }
 }

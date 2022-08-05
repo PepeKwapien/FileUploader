@@ -1,4 +1,4 @@
 export interface UploadedFile {
-  id: string;
+  id?: string;
   filename: string;
 }

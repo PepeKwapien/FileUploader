@@ -3,6 +3,10 @@
     {
       "id": 1,
       "filename": "test1.txt"
+    },
+    {
+      "filename": "collapp.svg",
+      "id": 2
     }
   ]
 }
