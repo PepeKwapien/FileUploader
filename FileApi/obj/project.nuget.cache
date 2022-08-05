@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "vcDoOUftrjo4vf66xo7oJKqFaiWVuDY9VmFEYrGFNt4b0Gbjm/Qx9kENsyvk950P7YzlA6q6RI4f1Eb2DF5yHQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pppkw\\source\\repos\\CanonRecruitment\\FileApi\\FileApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pppkw\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\pppkw\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\pppkw\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\pppkw\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\pppkw\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\pppkw\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
