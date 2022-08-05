@@ -8,6 +8,8 @@ div {
   border: #444 solid;
   border-width: 1px;
   background-color: rgb(233, 239, 250);
+  box-shadow: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
 }
 
 fa-icon {

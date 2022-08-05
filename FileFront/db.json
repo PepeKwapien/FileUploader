@@ -1,12 +1,28 @@
 {
   "files": [
     {
-      "id": 1,
-      "filename": "test1.txt"
+      "filename": "collapp.svg",
+      "id": 1
     },
     {
-      "filename": "collapp.svg",
-      "id": 4
+      "filename": "CV — ang.docx",
+      "id": 3
+    },
+    {
+      "filename": "git.png",
+      "id": 5
+    },
+    {
+      "filename": "git.png",
+      "id": 7
+    },
+    {
+      "filename": "git.png",
+      "id": 8
+    },
+    {
+      "filename": "CV - stare 1.pdf",
+      "id": 10
     }
   ]
 }
