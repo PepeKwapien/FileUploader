@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
+import { FileListComponent } from './components/file-list/file-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, UploadFormComponent],
+  declarations: [AppComponent, HeaderComponent, UploadFormComponent, FileListComponent],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
