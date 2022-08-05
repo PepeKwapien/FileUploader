@@ -16,6 +16,7 @@ export class HttpRequestService {
   private fakeApiUrl = 'http://localhost:5000/files';
   private hasFileBeenAddedSubject: Subject<UploadedFile> =
     new Subject<UploadedFile>();
+  private refreshRequestedSubject: Subject<any> = new Subject<any>();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -44,5 +45,13 @@ export class HttpRequestService {
 
   fileAddedSubscription() {
     return this.hasFileBeenAddedSubject.asObservable();
+  }
+
+  refreshList() {
+    this.refreshRequestedSubject.next(true);
+  }
+
+  refreshSubscription() {
+    return this.refreshRequestedSubject.asObservable();
   }
 }

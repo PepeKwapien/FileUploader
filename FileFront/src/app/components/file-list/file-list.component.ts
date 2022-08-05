@@ -11,11 +11,15 @@ import { Subscription } from 'rxjs';
 export class FileListComponent implements OnInit {
   files: UploadedFile[] = [];
   private fileAddedSubscription: Subscription;
+  private refreshRequested: Subscription;
 
   constructor(private httpRequestService: HttpRequestService) {
     this.fileAddedSubscription = this.httpRequestService
       .fileAddedSubscription()
       .subscribe((file: UploadedFile) => this.files.push(file));
+    this.refreshRequested = this.httpRequestService
+      .refreshSubscription()
+      .subscribe((a) => this.getFiles());
   }
 
   ngOnInit(): void {
