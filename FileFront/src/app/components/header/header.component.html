@@ -1,6 +1,8 @@
 <header>
   <div class="title-pane">
     <h1>{{ title }}</h1>
+    <button>Refresh file list</button>
+
     <button
       (click)="onUploadFormToggle()"
       [ngClass]="{ 'btn-close': showUploadForm, 'btn-upload': !showUploadForm }"

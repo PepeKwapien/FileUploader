@@ -1,18 +1,20 @@
-<div>
+<div class="form">
+  <div class="break"></div>
   <form (ngSubmit)="onSend()">
-    <div>
-      <label for="name" id="name">Filename:</label>
+    <div class="filename">
+      <label for="name" id="name" class="filename-label">Filename:</label>
       <input type="text" value="{{ filename }}" disabled="true" />
     </div>
-    <div>
-      <label for="input-file">Select file</label>
+    <div class="upload-form-buttons">
+      <label for="input-file" class="form-button">Select file</label>
       <input
         type="file"
         id="input-file"
         style="display: none"
         (change)="onChange($event.target)"
       />
-      <input type="submit" value="Send" />
+      <input type="submit" value="Send" class="form-button" />
     </div>
   </form>
+  <div class="break"></div>
 </div>

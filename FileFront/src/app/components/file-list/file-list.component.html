@@ -1,5 +1,4 @@
 <div>
-  <button (click)="getFiles()">Refresh file list</button>
   <div *ngIf="files.length > 0; else emptyList">
     <app-file-list-item
       *ngFor="let file of files"

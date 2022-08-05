@@ -36,3 +36,7 @@ button {
   font-size: 15px;
   font-family: inherit;
 }
+
+button:active {
+  transform: scale(0.98);
+}
