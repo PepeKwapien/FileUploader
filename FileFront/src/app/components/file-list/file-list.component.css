@@ -1,0 +1,6 @@
+.file-list {
+  display: flex;
+  margin: 20px 0;
+  flex-direction: column;
+  align-content: center;
+}

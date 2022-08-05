@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="files.length > 0; else emptyList">
+  <div *ngIf="files.length > 0; else emptyList" class="file-list">
     <app-file-list-item
       *ngFor="let file of files"
       [file]="file"

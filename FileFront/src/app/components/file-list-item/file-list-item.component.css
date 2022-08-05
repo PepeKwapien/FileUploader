@@ -1,0 +1,15 @@
+div {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: #444 solid;
+  border-width: 1px;
+  background-color: rgb(233, 239, 250);
+}
+
+fa-icon {
+  cursor: pointer;
+}
