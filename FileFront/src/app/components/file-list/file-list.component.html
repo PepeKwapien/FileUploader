@@ -1,7 +1,11 @@
 <div>
-  <button>Refresh file list</button>
+  <button (click)="getFiles()">Refresh file list</button>
   <div *ngIf="files.length > 0; else emptyList">
-    <app-file-list-item *ngFor="let file of files"></app-file-list-item>
+    <app-file-list-item
+      *ngFor="let file of files"
+      [file]="file"
+      (fileRemoved)="deleteFile(file)"
+    ></app-file-list-item>
   </div>
   <ng-template #emptyList>
     <div>File list is empty</div>

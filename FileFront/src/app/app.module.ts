@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { FileListComponent } from './components/file-list/file-list.component';
 import { FileListItemComponent } from './components/file-list-item/file-list-item.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FileListComponent,
     FileListItemComponent,
   ],
-  imports: [BrowserModule, FormsModule, FontAwesomeModule],
+  imports: [BrowserModule, FormsModule, FontAwesomeModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

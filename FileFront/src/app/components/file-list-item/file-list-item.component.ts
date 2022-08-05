@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UploadedFile } from 'src/interfaces/uploadedFile';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,10 +9,16 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class FileListItemComponent implements OnInit {
   @Input() file: UploadedFile = { id: '', filename: '' };
+  @Output() fileRemoved: EventEmitter<UploadedFile> =
+    new EventEmitter<UploadedFile>();
 
   faTimes = faTimes;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onDelete(file: UploadedFile) {
+    this.fileRemoved.emit(file);
+  }
 }
