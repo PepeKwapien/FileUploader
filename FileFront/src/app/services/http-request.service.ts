@@ -30,7 +30,9 @@ export class HttpRequestService {
       httpOptions
     );
 
-    this.hasFileBeenAddedSubject.next(file);
+    const updateList = response.subscribe((actualFile) =>
+      this.hasFileBeenAddedSubject.next(actualFile)
+    );
 
     return response;
   }
