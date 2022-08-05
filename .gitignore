@@ -5,7 +5,7 @@ dist
 tmp
 out-tsc
 bazel-out
-obj
+obj/*
 vs
 bin
 vscode
