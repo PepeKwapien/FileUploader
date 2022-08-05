@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UploadedFile } from 'src/interfaces/uploadedFile';
 
 const httpOptions = {
@@ -14,6 +14,8 @@ const httpOptions = {
 })
 export class HttpRequestService {
   private fakeApiUrl = 'http://localhost:5000/files';
+  private hasFileBeenAddedSubject: Subject<UploadedFile> =
+    new Subject<UploadedFile>();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -22,15 +24,23 @@ export class HttpRequestService {
   }
 
   createFile(file: UploadedFile): Observable<UploadedFile> {
-    return this.httpClient.post<UploadedFile>(
+    const response = this.httpClient.post<UploadedFile>(
       this.fakeApiUrl,
       file,
       httpOptions
     );
+
+    this.hasFileBeenAddedSubject.next(file);
+
+    return response;
   }
 
   deleteFile(file: UploadedFile) {
     const deleteUrl = `${this.fakeApiUrl}/${file.id}`;
     return this.httpClient.delete<UploadedFile>(deleteUrl);
+  }
+
+  fileAddedSubscription() {
+    return this.hasFileBeenAddedSubject.asObservable();
   }
 }

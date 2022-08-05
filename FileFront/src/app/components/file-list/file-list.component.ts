@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadedFile } from 'src/interfaces/uploadedFile';
 import { HttpRequestService } from 'src/app/services/http-request.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-file-list',
@@ -9,8 +10,13 @@ import { HttpRequestService } from 'src/app/services/http-request.service';
 })
 export class FileListComponent implements OnInit {
   files: UploadedFile[] = [];
+  private fileAddedSubscription: Subscription;
 
-  constructor(private httpRequestService: HttpRequestService) {}
+  constructor(private httpRequestService: HttpRequestService) {
+    this.fileAddedSubscription = this.httpRequestService
+      .fileAddedSubscription()
+      .subscribe((file: UploadedFile) => this.files.push(file));
+  }
 
   ngOnInit(): void {
     this.getFiles();
