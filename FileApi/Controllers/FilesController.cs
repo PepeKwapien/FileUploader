@@ -9,7 +9,7 @@ namespace FileApi.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        private UploadedFile[] files = new UploadedFile[] {
+        private static UploadedFile[] files = new UploadedFile[] {
             new UploadedFile { Id = Guid.NewGuid().ToString(), Filename = "test1.txt" },
             new UploadedFile { Id = Guid.NewGuid().ToString(), Filename = "test2.pdf" },
             new UploadedFile { Id = Guid.NewGuid().ToString(), Filename = "test3.csv" }
@@ -43,15 +43,15 @@ namespace FileApi.Controllers
 
         // POST <FilesController>
         [HttpPost]
-        public ActionResult<UploadedFile> Post([FromBody] string filename)
+        public ActionResult<UploadedFile> Post([FromBody] UploadedFile file)
         {
-            if (String.IsNullOrEmpty(filename))
+            if (file == null || String.IsNullOrEmpty(file.Filename))
             {
                 return BadRequest();
             }
 
-            var newFile = new UploadedFile() { Id = Guid.NewGuid().ToString(), Filename = filename };
-            this.files.Append<UploadedFile>(newFile);
+            var newFile = new UploadedFile() { Id = Guid.NewGuid().ToString(), Filename = file.Filename };
+            files.Append<UploadedFile>(newFile);
 
             return newFile;
 
@@ -73,7 +73,7 @@ namespace FileApi.Controllers
                 return BadRequest();
             }
 
-            var storedFile = files.FirstOrDefault(f => f.Id == id);
+            var storedFile = files.FirstOrDefault(f => f.Id != null && f.Id.ToString().Equals(id));
 
             bool removed = false;
             
