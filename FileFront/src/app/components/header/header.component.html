@@ -1,1 +1,7 @@
-<p>header works!</p>
+<header>
+  <div class="title-pane">
+    <h1>{{ title }}</h1>
+    <button (click)="onUploadFormToggle()">Upload file</button>
+  </div>
+  <app-upload-form></app-upload-form>
+</header>
