@@ -1,7 +1,12 @@
 <header>
   <div class="title-pane">
     <h1>{{ title }}</h1>
-    <button (click)="onUploadFormToggle()">Upload file</button>
+    <button
+      (click)="onUploadFormToggle()"
+      [ngClass]="{ 'btn-close': showUploadForm, 'btn-upload': !showUploadForm }"
+    >
+      {{ showUploadForm ? "Close" : "Upload file" }}
+    </button>
   </div>
-  <app-upload-form></app-upload-form>
+  <app-upload-form *ngIf="showUploadForm"></app-upload-form>
 </header>

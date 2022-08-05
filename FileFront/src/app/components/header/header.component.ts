@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UploadFormUiService } from 'src/app/services/upload-form-ui.service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   title: string;
   showUploadForm: boolean;
+  uploadFormSubscription: Subscription = new Subscription();
 
-  constructor() {
+  constructor(private uploadFormUiService: UploadFormUiService) {
     this.showUploadForm = false;
     this.title = 'FileFront';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.uploadFormSubscription = this.uploadFormUiService
+      .toggleSubscription()
+      .subscribe((value) => (this.showUploadForm = value));
+  }
 
-  onUploadFormToggle() {}
+  onUploadFormToggle() {
+    this.uploadFormUiService.toggleUploadForm();
+  }
 }
