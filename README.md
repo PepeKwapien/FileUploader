@@ -99,3 +99,5 @@ Improvements were not implemented due to the lack of time.
 - [x] Toast messages
 - [ ] Connection to a deployed database
 - [ ] Uploading actual files instead of just their names
+- [ ] Unit tests
+- [ ] Docker images (involves learning Docker from the basics)
