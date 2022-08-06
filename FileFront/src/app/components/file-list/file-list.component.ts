@@ -16,7 +16,7 @@ export class FileListComponent implements OnInit {
   constructor(private httpRequestService: HttpRequestService) {
     this.fileAddedSubscription = this.httpRequestService
       .fileAddedSubscription()
-      .subscribe((file: UploadedFile) => this.files.push(file));
+      .subscribe((msg) => this.getFiles());
     this.refreshRequested = this.httpRequestService
       .refreshSubscription()
       .subscribe((a) => this.getFiles());

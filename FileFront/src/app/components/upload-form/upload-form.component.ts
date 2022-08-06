@@ -37,7 +37,11 @@ export class UploadFormComponent implements OnInit {
 
     const newFile: UploadedFile = { filename: this.filename };
 
-    this.httpRequestService.createFile(newFile).subscribe();
+    this.httpRequestService
+      .createFile(newFile)
+      .subscribe((createdFile) =>
+        this.httpRequestService.publishAddedFile(createdFile)
+      );
 
     this.filename = this.defaultFilename;
   }

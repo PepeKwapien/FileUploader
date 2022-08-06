@@ -32,16 +32,16 @@ export class HttpRequestService {
       httpOptions
     );
 
-    const updateList = response.subscribe((actualFile) =>
-      this.hasFileBeenAddedSubject.next(actualFile)
-    );
-
     return response;
   }
 
   deleteFile(file: UploadedFile) {
     const deleteUrl = `${this.apiUrl}/${file.id}`;
     return this.httpClient.delete<UploadedFile>(deleteUrl);
+  }
+
+  publishAddedFile(file: UploadedFile) {
+    this.hasFileBeenAddedSubject.next(file);
   }
 
   fileAddedSubscription() {
