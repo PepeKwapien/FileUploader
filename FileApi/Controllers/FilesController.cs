@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+﻿using FileApi.Data;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,17 +9,18 @@ namespace FileApi.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        private static UploadedFile[] files = new UploadedFile[] {
-            new UploadedFile { Id = Guid.NewGuid().ToString(), Filename = "test1.txt" },
-            new UploadedFile { Id = Guid.NewGuid().ToString(), Filename = "test2.pdf" },
-            new UploadedFile { Id = Guid.NewGuid().ToString(), Filename = "test3.csv" }
-        };
+        private FileContext _dbContext;
+
+        public FilesController(FileContext dbContext)
+        {
+            this._dbContext = dbContext;
+        }
 
         // GET: api/<FilesController>
         [HttpGet]
         public ActionResult<IEnumerable<UploadedFile>> Get()
         {
-            return files;
+            return this._dbContext.getAllFiles();
         }
 
         // GET <FilesController>/5
@@ -31,7 +32,7 @@ namespace FileApi.Controllers
                 return BadRequest();
             }
 
-            var foundFile = files.FirstOrDefault(f => f.Id == id);
+            var foundFile = this._dbContext.uploadedFiles.FirstOrDefault(f => f.Id == id);
 
             if(foundFile == null)
             {
@@ -50,8 +51,11 @@ namespace FileApi.Controllers
                 return BadRequest();
             }
 
+            System.Diagnostics.Debug.WriteLine("Creating file");
+
             var newFile = new UploadedFile() { Id = Guid.NewGuid().ToString(), Filename = file.Filename };
-            files.Append<UploadedFile>(newFile);
+            this._dbContext.uploadedFiles.Add(newFile);
+            this._dbContext.SaveChanges();
 
             return newFile;
 
@@ -59,7 +63,7 @@ namespace FileApi.Controllers
 
         // PUT api/<FilesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] string value) 
         {
             throw new NotImplementedException();
         }
@@ -73,13 +77,15 @@ namespace FileApi.Controllers
                 return BadRequest();
             }
 
-            var storedFile = files.FirstOrDefault(f => f.Id != null && f.Id.ToString().Equals(id));
+            var storedFile = this._dbContext.uploadedFiles.FirstOrDefault(f => id.Equals(f.Id));
 
             bool removed = false;
             
             if(storedFile != null)
             {
-                removed = files.ToList().Remove(storedFile);
+                this._dbContext.uploadedFiles.Remove(storedFile);
+                removed = true;
+                this._dbContext.SaveChanges();
             }
 
             return removed ? storedFile : NotFound();

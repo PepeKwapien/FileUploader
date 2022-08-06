@@ -15,8 +15,7 @@ const httpOptions = {
 export class HttpRequestService {
   //private apiUrl = 'http://localhost:5000/files'; // This is URL for local fake backend from package json-server. To test it uncomment this url and run 'npm run server'
   private apiUrl = 'https://localhost:42000/files';
-  private hasFileBeenAddedSubject: Subject<UploadedFile> =
-    new Subject<UploadedFile>();
+  private hasFileBeenAddedSubject: Subject<boolean> = new Subject<boolean>();
   private refreshRequestedSubject: Subject<any> = new Subject<any>();
 
   constructor(private httpClient: HttpClient) {}
@@ -32,9 +31,7 @@ export class HttpRequestService {
       httpOptions
     );
 
-    const updateList = response.subscribe((actualFile) =>
-      this.hasFileBeenAddedSubject.next(actualFile)
-    );
+    this.hasFileBeenAddedSubject.next(true);
 
     return response;
   }

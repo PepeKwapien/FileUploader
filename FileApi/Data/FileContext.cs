@@ -6,6 +6,11 @@ namespace FileApi.Data
     {
         public FileContext(DbContextOptions options) : base(options) { }
 
-        DbSet<UploadedFile> uploadedFiles { get; set; }
+        public DbSet<UploadedFile> uploadedFiles { get; set; }
+
+        public DbSet<UploadedFile> getAllFiles()
+        {
+            return this.uploadedFiles;
+        }
     }
 }
