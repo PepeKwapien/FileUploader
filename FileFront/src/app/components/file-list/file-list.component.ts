@@ -31,23 +31,25 @@ export class FileListComponent implements OnInit {
   }
 
   getFiles() {
-    this.httpRequestService
-      .getFiles()
-      .subscribe(
-        (fetchedFiles) =>
-          (this.files = fetchedFiles) &&
-          fetchedFiles.length > 0 &&
-          this.toastr.success('Got all files')
-      );
+    this.httpRequestService.getFiles().subscribe({
+      next: (fetchedFiles) =>
+        (this.files = fetchedFiles) &&
+        fetchedFiles.length > 0 &&
+        this.toastr.success('Got all files'),
+      error: () => {
+        this.toastr.error('Cannot connnect to the server');
+      },
+    });
   }
 
   deleteFile(file: UploadedFile) {
-    this.httpRequestService
-      .deleteFile(file)
-      .subscribe(
-        (fileRemoved) =>
-          (this.files = this.files.filter((f) => f.id !== file.id)) &&
-          this.toastr.success(`Removed file ${file.filename}`)
-      );
+    this.httpRequestService.deleteFile(file).subscribe({
+      next: (fileRemoved) =>
+        (this.files = this.files.filter((f) => f.id !== file.id)) &&
+        this.toastr.success(`Removed file ${file.filename}`),
+      error: () => {
+        this.toastr.error('There was an error. Try refreshing');
+      },
+    });
   }
 }
