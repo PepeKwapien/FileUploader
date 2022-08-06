@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -18,7 +20,14 @@ import { FileListItemComponent } from './components/file-list-item/file-list-ite
     FileListComponent,
     FileListItemComponent,
   ],
-  imports: [BrowserModule, FormsModule, FontAwesomeModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

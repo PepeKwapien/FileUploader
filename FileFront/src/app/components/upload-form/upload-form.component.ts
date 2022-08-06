@@ -3,6 +3,7 @@ import { HttpRequestService } from 'src/app/services/http-request.service';
 import { UploadedFile } from 'src/interfaces/uploadedFile';
 import { faFileArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-upload-form',
@@ -17,7 +18,10 @@ export class UploadFormComponent implements OnInit {
   faFileArrowUp = faFileArrowUp;
   faPaperPlane = faPaperPlane;
 
-  constructor(private httpRequestService: HttpRequestService) {
+  constructor(
+    private httpRequestService: HttpRequestService,
+    private toastr: ToastrService
+  ) {
     this.filename = this.defaultFilename;
   }
 
@@ -37,11 +41,15 @@ export class UploadFormComponent implements OnInit {
 
     const newFile: UploadedFile = { filename: this.filename };
 
-    this.httpRequestService
-      .createFile(newFile)
-      .subscribe((createdFile) =>
-        this.httpRequestService.publishAddedFile(createdFile)
-      );
+    this.httpRequestService.createFile(newFile).subscribe({
+      next: (createdFile) => {
+        this.httpRequestService.publishAddedFile(createdFile);
+        this.toastr.success(`Created file ${createdFile.filename}`);
+      },
+      error: () => {
+        this.toastr.error('There was an error. Try again');
+      },
+    });
 
     this.filename = this.defaultFilename;
   }
